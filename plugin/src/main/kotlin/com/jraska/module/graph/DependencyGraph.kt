@@ -10,43 +10,39 @@ class DependencyGraph private constructor() {
 
     val rootCandidates = nodes().toMutableSet()
 
-    nodes().flatMap { it.dependsOn }
+    nodes()
+      .flatMap { it.dependsOn }
       .forEach { rootCandidates.remove(it) }
 
-    return rootCandidates.associateBy { heightOf(it.key) }
-      .maxByOrNull { it.key }!!.value
+    return rootCandidates
+      .associateBy { heightOf(it.key) }
+      .maxByOrNull { it.key }!!
+      .value
   }
 
   fun nodes(): Collection<Node> = nodes.values
 
-  fun dependencyPairs(): List<Pair<String, String>> {
-    return nodes()
+  fun dependencyPairs(): List<Pair<String, String>> =
+    nodes()
       .flatMap { parent ->
         parent.dependsOn.map { dependency -> parent to dependency }
-      }
-      .map { it.first.key to it.second.key }
-  }
+      }.map { it.first.key to it.second.key }
 
-  fun longestPath(): LongestPath {
-    return longestPath(findRoot().key)
-  }
+  fun longestPath(): LongestPath = longestPath(findRoot().key)
 
   fun longestPath(key: String): LongestPath {
     val nodeNames =
-      nodes.getValue(key)
+      nodes
+        .getValue(key)
         .longestPath()
         .map { it.key }
 
     return LongestPath(nodeNames)
   }
 
-  fun height(): Int {
-    return heightOf(findRoot().key)
-  }
+  fun height(): Int = heightOf(findRoot().key)
 
-  fun heightOf(key: String): Int {
-    return nodes.getValue(key).height()
-  }
+  fun heightOf(key: String): Int = nodes.getValue(key).height()
 
   fun statistics(): GraphStatistics {
     val height = height()
@@ -72,12 +68,11 @@ class DependencyGraph private constructor() {
     }
   }
 
-  fun serializableGraph(): SerializableGraph {
-    return SerializableGraph(
+  fun serializableGraph(): SerializableGraph =
+    SerializableGraph(
       ArrayList(dependencyPairs()),
       nodes.keys.first(),
     )
-  }
 
   private fun addConnections(
     node: Node,
@@ -89,16 +84,16 @@ class DependencyGraph private constructor() {
     }
   }
 
-  private fun countEdges(): Int {
-    return nodes().flatMap { node -> node.dependsOn }.count()
-  }
+  private fun countEdges(): Int = nodes().flatMap { node -> node.dependsOn }.count()
 
   class SerializableGraph(
     val dependencyPairs: ArrayList<Pair<String, String>>,
     val firstModule: String,
   ) : Serializable
 
-  class Node(val key: String) {
+  class Node(
+    val key: String,
+  ) {
     val dependsOn = mutableSetOf<Node>()
 
     private val calculatedHeight by lazy {
@@ -111,9 +106,7 @@ class DependencyGraph private constructor() {
 
     private fun isLeaf() = dependsOn.isEmpty()
 
-    fun height(): Int {
-      return calculatedHeight
-    }
+    fun height(): Int = calculatedHeight
 
     internal fun longestPath(): List<Node> {
       if (isLeaf()) {
@@ -146,9 +139,7 @@ class DependencyGraph private constructor() {
       return graph
     }
 
-    fun create(vararg dependencies: Pair<String, String>): DependencyGraph {
-      return create(dependencies.asList())
-    }
+    fun create(vararg dependencies: Pair<String, String>): DependencyGraph = create(dependencies.asList())
 
     fun create(graph: SerializableGraph): DependencyGraph {
       if (graph.dependencyPairs.isEmpty()) {
@@ -165,8 +156,6 @@ class DependencyGraph private constructor() {
       getOrCreate(from).dependsOn.add(getOrCreate(to))
     }
 
-    private fun DependencyGraph.getOrCreate(key: String): Node {
-      return nodes[key] ?: Node(key).also { nodes[key] = it }
-    }
+    private fun DependencyGraph.getOrCreate(key: String): Node = nodes[key] ?: Node(key).also { nodes[key] = it }
   }
 }

@@ -11,7 +11,8 @@ class FullProjectRootGradleTest {
 
   @Test
   fun printsCorrectStatisticsForRootProjectWithDependency() {
-    testProjectDir.newFile("settings.gradle")
+    testProjectDir
+      .newFile("settings.gradle")
       .writeText("include ':core'")
 
     createRoot(
@@ -53,7 +54,8 @@ class FullProjectRootGradleTest {
 
   @Test
   fun printsCorrectStatisticsForIndependentRootProject() {
-    testProjectDir.newFile("settings.gradle")
+    testProjectDir
+      .newFile("settings.gradle")
       .writeText("include ':app'")
 
     createRoot(

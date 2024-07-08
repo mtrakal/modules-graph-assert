@@ -44,8 +44,8 @@ class GenerateModulesGraph(
     internal fun outputFilePath(
       project: Project,
       outputFormat: OutputFormat,
-    ): String? {
-      return when {
+    ): String? =
+      when {
         project.hasProperty(Api.Parameters.OUTPUT_PATH) && outputFormat.isGraphviz -> {
           project.property(Api.Parameters.OUTPUT_PATH).toString()
         }
@@ -56,7 +56,6 @@ class GenerateModulesGraph(
 
         else -> null
       }
-    }
 
     internal fun onlyModule(project: Project): String? {
       if (project.hasProperty(Api.Parameters.PRINT_ONLY_MODULE)) {

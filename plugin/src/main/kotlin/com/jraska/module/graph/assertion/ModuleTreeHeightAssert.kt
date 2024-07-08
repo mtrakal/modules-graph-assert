@@ -7,7 +7,8 @@ import java.io.Serializable
 class ModuleTreeHeightAssert(
   private val moduleName: String?,
   private val maxHeight: Int,
-) : GraphAssert, Serializable {
+) : GraphAssert,
+  Serializable {
   override fun assert(dependencyGraph: DependencyGraph) {
     if (moduleName == null) {
       assertWholeGraphHeight(dependencyGraph)

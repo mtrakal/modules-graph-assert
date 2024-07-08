@@ -13,7 +13,8 @@ class RestrictedDependenciesAssert(
     val matchers = errorMatchers.map { Parse.restrictiveMatcher(it) }
 
     val failedDependencies =
-      dependencyGraph.dependencyPairs()
+      dependencyGraph
+        .dependencyPairs()
         .map { aliasMap.mapAlias(it) }
         .map { dependency ->
           val violations = matchers.filter { it.matches(dependency.pairToAssert()) }.toList()
@@ -25,10 +26,10 @@ class RestrictedDependenciesAssert(
     }
   }
 
-  private fun buildErrorMessage(failedDependencies: List<Pair<ModuleDependency, List<DependencyMatcher>>>): String {
-    return failedDependencies.map {
-      val violatedRules = it.second.map { "'$it'" }.joinToString(", ")
-      "Dependency '${it.first.assertDisplayText()} violates: $violatedRules"
-    }.joinToString("\n")
-  }
+  private fun buildErrorMessage(failedDependencies: List<Pair<ModuleDependency, List<DependencyMatcher>>>): String =
+    failedDependencies
+      .map {
+        val violatedRules = it.second.map { "'$it'" }.joinToString(", ")
+        "Dependency '${it.first.assertDisplayText()} violates: $violatedRules"
+      }.joinToString("\n")
 }

@@ -9,8 +9,10 @@ object MermaidWriter : GraphWriter {
     aliases: Map<String, String>,
   ): String {
     val longestPathConnections =
-      dependencyGraph.longestPath()
-        .nodeNames.zipWithNext()
+      dependencyGraph
+        .longestPath()
+        .nodeNames
+        .zipWithNext()
         .toSet()
 
     val stringBuilder = StringBuilder()
@@ -34,7 +36,8 @@ object MermaidWriter : GraphWriter {
     dependencyPairs
       .map { aliases.mapAlias(it) }
       .forEachIndexed { index, connection ->
-        stringBuilder.append(connection.fromDocTextMermaid())
+        stringBuilder
+          .append(connection.fromDocTextMermaid())
           .append(" --> ")
           .append("${connection.toDocTextMermaid()};")
           .append("\n")

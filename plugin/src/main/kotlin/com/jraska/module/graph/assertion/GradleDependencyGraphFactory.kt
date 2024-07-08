@@ -32,17 +32,16 @@ object GradleDependencyGraphFactory {
     return fullDependencyGraph.subTree(moduleDisplayName)
   }
 
-  private fun Project.listAllDependencies(configurationsToLook: Set<String>): List<Pair<String, List<String>>> {
-    return (rootProject.subprojects + rootProject)
+  private fun Project.listAllDependencies(configurationsToLook: Set<String>): List<Pair<String, List<String>>> =
+    (rootProject.subprojects + rootProject)
       .map { project ->
         project.moduleDisplayName() to
           project.configurations
             .filter { configurationsToLook.contains(it.name) }
             .flatMap { configuration ->
-              configuration.dependencies.filterIsInstance(ProjectDependency::class.java)
+              configuration.dependencies
+                .filterIsInstance(ProjectDependency::class.java)
                 .map { it.dependencyProject }
-            }
-            .map { it.moduleDisplayName() }
+            }.map { it.moduleDisplayName() }
       }
-  }
 }

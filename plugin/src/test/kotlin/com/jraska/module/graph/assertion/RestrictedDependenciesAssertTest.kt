@@ -75,8 +75,8 @@ class RestrictedDependenciesAssertTest {
     ).assert(dependencyGraph)
   }
 
-  private fun testGraph(): DependencyGraph {
-    return DependencyGraph.create(
+  private fun testGraph(): DependencyGraph =
+    DependencyGraph.create(
       "app" to "feature",
       "app" to "feature2",
       "app" to "lib",
@@ -88,5 +88,4 @@ class RestrictedDependenciesAssertTest {
       "lib2" to "core-android",
       "core-android" to "core",
     )
-  }
 }

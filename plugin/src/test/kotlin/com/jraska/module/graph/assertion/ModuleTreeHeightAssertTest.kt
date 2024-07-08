@@ -40,12 +40,11 @@ class ModuleTreeHeightAssertTest {
     ModuleTreeHeightAssert("appx", 2).assert(dependencyGraph)
   }
 
-  private fun testGraph(): DependencyGraph {
-    return DependencyGraph.create(
+  private fun testGraph(): DependencyGraph =
+    DependencyGraph.create(
       "app" to "feature",
       "app" to "lib",
       "feature" to "lib",
       "lib" to "core",
     )
-  }
 }

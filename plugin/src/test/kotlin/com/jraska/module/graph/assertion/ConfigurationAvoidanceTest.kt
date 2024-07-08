@@ -44,10 +44,10 @@ class ConfigurationAvoidanceTest {
 fun runGradleAssertModuleGraph(
   dir: File,
   vararg arguments: String = arrayOf("--configuration-cache", "assertModuleGraph"),
-): BuildResult {
-  return GradleRunner.create()
+): BuildResult =
+  GradleRunner
+    .create()
     .withProjectDir(dir)
     .withPluginClasspath()
     .withArguments(arguments.asList())
     .build()
-}

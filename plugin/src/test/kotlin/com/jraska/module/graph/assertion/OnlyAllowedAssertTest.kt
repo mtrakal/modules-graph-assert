@@ -74,8 +74,8 @@ class OnlyAllowedAssertTest {
     OnlyAllowedAssert(allowedDependencies, aliases).assert(dependencyGraph)
   }
 
-  private fun testGraph(): DependencyGraph {
-    return DependencyGraph.create(
+  private fun testGraph(): DependencyGraph =
+    DependencyGraph.create(
       "app" to "feature",
       "app" to "feature2",
       "app" to "api",
@@ -84,5 +84,4 @@ class OnlyAllowedAssertTest {
       "api" to "lib",
       "api2" to "lib",
     )
-  }
 }

@@ -14,7 +14,8 @@ class FullProjectMultipleAppliedGradleTest {
 
   @Before
   fun setup() {
-    testProjectDir.newFile("settings.gradle")
+    testProjectDir
+      .newFile("settings.gradle")
       .writeText("include ':app', ':core', 'core-api', 'no-dependencies'")
 
     createModule(
