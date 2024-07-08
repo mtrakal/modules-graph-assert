@@ -1,6 +1,31 @@
 # Module Graph Assert
 A Gradle plugin that helps keep your module graph healthy and lean.
 
+---
+
+## What is changed in this fork
+
+> [!IMPORTANT]
+> Added support for Mermaid output format supported by GitHut / GitLab markdown. So we can draw dependency chart into markdown file.
+
+### Usage for GitHub / GitLab markdown
+```kotlin
+// app/build.gradle.kts
+plugins { 
+  id("com.jraska.module.graph.assertion") version "2.5.0"
+}
+
+
+moduleGraphAssert {
+    configurations = setOf("api", "implementation")
+    assertOnAnyBuild = true
+    outputFormat = OutputFormat.MERMAID
+    outputFilePath = "$rootDir/dependency-graph.md"
+}
+```
+
+---
+
 - [Medium Article](https://proandroiddev.com/module-rules-protect-your-build-time-and-architecture-d1194c7cc6bc) with complete context.
 - [Talk about module graph and why it matters](https://www.droidcon.com/2022/11/15/modularization-flatten-your-graph-and-get-the-real-benefits/)
 - [Changelog](https://github.com/jraska/modules-graph-assert/releases)
