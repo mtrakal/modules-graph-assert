@@ -38,35 +38,31 @@ class ModuleDependency(
     return stringBuilder.toString()
   }
 
-  fun fromDocText(): String {
-    return if (fromAlias != null) {
+  fun fromDocText(): String =
+    if (fromAlias != null) {
       "$from('$fromAlias')"
     } else {
       from
     }
-  }
 
-  fun toDocText(): String {
-    return if (toAlias != null) {
+  fun toDocText(): String =
+    if (toAlias != null) {
       "$to('$toAlias')"
     } else {
       to
     }
-  }
 
-  fun fromDocTextMermaid(): String {
-    return if (fromAlias != null) {
+  fun fromDocTextMermaid(): String =
+    if (fromAlias != null) {
       "$from($fromAlias)"
     } else {
       "$from($from)"
     }
-  }
 
-  fun toDocTextMermaid(): String {
-    return if (toAlias != null) {
+  fun toDocTextMermaid(): String =
+    if (toAlias != null) {
       "$to($toAlias)"
     } else {
       "$to($to)"
     }
-  }
 }

@@ -5,7 +5,9 @@ import com.jraska.module.graph.writer.GraphvizWriter
 import com.jraska.module.graph.writer.MermaidWriter
 import kotlin.reflect.KClass
 
-enum class OutputFormat(val writer: KClass<out GraphWriter>) {
+enum class OutputFormat(
+  val writer: KClass<out GraphWriter>,
+) {
   GRAPHVIZ(GraphvizWriter::class),
   MERMAID(MermaidWriter::class),
   ;

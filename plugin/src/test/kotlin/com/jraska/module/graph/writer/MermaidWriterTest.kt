@@ -25,8 +25,8 @@ class MermaidWriterTest {
     assert(graphText == EXPECTED_OUTPUT_WITH_ALISASES)
   }
 
-  private fun testGraph(): DependencyGraph {
-    return DependencyGraph.create(
+  private fun testGraph(): DependencyGraph =
+    DependencyGraph.create(
       "app" to "feature",
       "app" to "feature-about",
       "feature-about" to "lib",
@@ -35,7 +35,6 @@ class MermaidWriterTest {
       "feature" to "lib",
       "lib" to "core",
     )
-  }
 
   companion object {
     private const val EXPECTED_OUTPUT = """```mermaid

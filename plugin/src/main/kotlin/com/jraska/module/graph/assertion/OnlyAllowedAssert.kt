@@ -12,7 +12,8 @@ class OnlyAllowedAssert(
     val matchers = allowedDependencies.map { Parse.matcher(it) }
 
     val disallowedDependencies =
-      dependencyGraph.dependencyPairs()
+      dependencyGraph
+        .dependencyPairs()
         .map { aliasMap.mapAlias(it) }
         .filterNot { dependency -> matchers.any { it.matches(dependency.pairToAssert()) } }
         .map { it.assertDisplayText() }

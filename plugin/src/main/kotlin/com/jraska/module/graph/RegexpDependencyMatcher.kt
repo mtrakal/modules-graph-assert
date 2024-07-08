@@ -9,7 +9,5 @@ class RegexpDependencyMatcher(
     return matchingRegex.matches(dependencyToMatch)
   }
 
-  override fun toString(): String {
-    return matchingRegex.toString()
-  }
+  override fun toString(): String = matchingRegex.toString()
 }

@@ -13,7 +13,8 @@ class OnAnyBuildAssertTest {
 
   @Before
   fun setup() {
-    testProjectDir.newFile("settings.gradle")
+    testProjectDir
+      .newFile("settings.gradle")
       .writeText("include ':app', ':core', ':feature', 'core-api'")
 
     createModule(
@@ -173,10 +174,10 @@ class OnAnyBuildAssertTest {
   private fun setupGradle(
     dir: File,
     vararg arguments: String,
-  ): GradleRunner {
-    return GradleRunner.create()
+  ): GradleRunner =
+    GradleRunner
+      .create()
       .withProjectDir(dir)
       .withPluginClasspath()
       .withArguments(arguments.asList())
-  }
 }

@@ -204,8 +204,8 @@ private fun Project.moduleNameForHeightAssert(): String? {
   }
 }
 
-fun Project.moduleDisplayName(): String {
-  return displayName.replace("project", "")
+fun Project.moduleDisplayName(): String =
+  displayName
+    .replace("project", "")
     .replace("'", "")
     .trim()
-}

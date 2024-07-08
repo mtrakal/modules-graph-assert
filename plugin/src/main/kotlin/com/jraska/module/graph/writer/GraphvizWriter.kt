@@ -9,8 +9,10 @@ object GraphvizWriter : GraphWriter {
     aliases: Map<String, String>,
   ): String {
     val longestPathConnections =
-      dependencyGraph.longestPath()
-        .nodeNames.zipWithNext()
+      dependencyGraph
+        .longestPath()
+        .nodeNames
+        .zipWithNext()
         .toSet()
 
     val stringBuilder = StringBuilder()
@@ -19,14 +21,16 @@ object GraphvizWriter : GraphWriter {
 
     val dependencyPairs = dependencyGraph.dependencyPairs()
     if (dependencyPairs.isEmpty()) {
-      stringBuilder.append("\"${dependencyGraph.findRoot().key}\"")
+      stringBuilder
+        .append("\"${dependencyGraph.findRoot().key}\"")
         .append("\n")
     }
 
     dependencyPairs
       .map { aliases.mapAlias(it) }
       .forEach { connection ->
-        stringBuilder.append("\"${connection.fromDocText()}\"")
+        stringBuilder
+          .append("\"${connection.fromDocText()}\"")
           .append(" -> ")
           .append("\"${connection.toDocText()}\"")
 

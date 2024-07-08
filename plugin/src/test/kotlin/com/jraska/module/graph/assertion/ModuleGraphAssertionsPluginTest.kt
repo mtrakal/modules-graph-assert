@@ -19,14 +19,26 @@ class ModuleGraphAssertionsPluginTest {
 
   @Test
   fun testAddsOnlyOneTaskWhenApplied() {
-    val checkDependsOnSize = project.tasks.findByName(CHECK_TASK_NAME)!!.dependsOn.size
+    val checkDependsOnSize =
+      project.tasks
+        .findByName(CHECK_TASK_NAME)!!
+        .dependsOn.size
 
     project.plugins.apply(ModuleGraphAssertionsPlugin::class.java)
     project.evaluate()
 
     assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL) != null)
-    assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL)!!.dependsOn.isEmpty())
-    assert(project.tasks.findByName(CHECK_TASK_NAME)!!.dependsOn.size == checkDependsOnSize + 1)
+    assert(
+      project.tasks
+        .findByName(Api.Tasks.ASSERT_ALL)!!
+        .dependsOn
+        .isEmpty(),
+    )
+    assert(
+      project.tasks
+        .findByName(CHECK_TASK_NAME)!!
+        .dependsOn.size == checkDependsOnSize + 1,
+    )
   }
 
   @Test
@@ -43,7 +55,11 @@ class ModuleGraphAssertionsPluginTest {
     plugin.addModulesAssertions(project, extension)
 
     assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL) != null)
-    assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL)!!.dependsOn.size == 3)
+    assert(
+      project.tasks
+        .findByName(Api.Tasks.ASSERT_ALL)!!
+        .dependsOn.size == 3,
+    )
 
     setOf(
       project.tasks.findByName(Api.Tasks.ASSERT_MAX_HEIGHT) as AssertGraphTask,
@@ -65,7 +81,11 @@ class ModuleGraphAssertionsPluginTest {
     plugin.addModulesAssertions(project, extension)
 
     assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL) != null)
-    assert(project.tasks.findByName(Api.Tasks.ASSERT_ALL)!!.dependsOn.size == 2)
+    assert(
+      project.tasks
+        .findByName(Api.Tasks.ASSERT_ALL)!!
+        .dependsOn.size == 2,
+    )
 
     setOf(
       project.tasks.findByName(Api.Tasks.ASSERT_MAX_HEIGHT) as AssertGraphTask,

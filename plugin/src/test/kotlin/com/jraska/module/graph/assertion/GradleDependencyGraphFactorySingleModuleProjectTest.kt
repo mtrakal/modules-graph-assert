@@ -45,7 +45,8 @@ class GradleDependencyGraphFactorySingleModuleProjectTest {
 
   private fun createProject(name: String): DefaultProject {
     val project =
-      ProjectBuilder.builder()
+      ProjectBuilder
+        .builder()
         .withName(name)
         .withParent(rootProject)
         .build() as DefaultProject
