@@ -40,7 +40,7 @@ class FullProjectMultipleAppliedGradleTest {
       "app",
       content = """
           plugins {
-              id 'com.jraska.module.graph.assertion'
+              id 'cz.mtrakal.module.graph.assertion'
           }
           apply plugin: 'java-library'
           
@@ -59,7 +59,7 @@ class FullProjectMultipleAppliedGradleTest {
       "no-dependencies",
       content = """
           plugins {
-              id 'com.jraska.module.graph.assertion'
+              id 'cz.mtrakal.module.graph.assertion'
           }
           apply plugin: 'java-library'
           

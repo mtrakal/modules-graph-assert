@@ -6,7 +6,11 @@ object Parse {
 
   fun matcher(dependencyText: String): RegexpDependencyMatcher = matcher(dependencyText, DEPENDENCY_SIGN_DIVIDER)
 
-  fun restrictiveMatcher(matcherText: String): RegexpDependencyMatcher = matcher(matcherText, NO_DEPENDENCY_SIGN_DIVIDER)
+  fun restrictiveMatcher(matcherText: String): RegexpDependencyMatcher =
+    matcher(
+      matcherText,
+      NO_DEPENDENCY_SIGN_DIVIDER,
+    )
 
   private fun matcher(
     matcherText: String,
