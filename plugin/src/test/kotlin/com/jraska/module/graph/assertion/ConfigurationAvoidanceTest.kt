@@ -17,7 +17,7 @@ class ConfigurationAvoidanceTest {
     testProjectDir.newFile("build.gradle").writeText(
       """
           plugins {
-              id 'com.jraska.module.graph.assertion'
+              id 'cz.mtrakal.module.graph.assertion'
           }
           
           moduleGraphAssert {

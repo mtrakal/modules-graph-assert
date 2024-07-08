@@ -19,7 +19,7 @@ class FullProjectRootGradleTest {
       content =
         """
         plugins {
-            id 'com.jraska.module.graph.assertion'
+            id 'cz.mtrakal.module.graph.assertion'
         }
         apply plugin: 'java-library'
         
@@ -62,7 +62,7 @@ class FullProjectRootGradleTest {
       content =
         """
         plugins {
-            id 'com.jraska.module.graph.assertion'
+            id 'cz.mtrakal.module.graph.assertion'
         }
         apply plugin: 'java-library'
         
@@ -76,7 +76,7 @@ class FullProjectRootGradleTest {
       "app",
       content = """
       plugins {
-          id 'com.jraska.module.graph.assertion'
+          id 'cz.mtrakal.module.graph.assertion'
       }
       apply plugin: 'java-library'
       moduleGraphAssert {

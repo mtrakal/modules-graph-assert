@@ -75,7 +75,7 @@ subprojects {
     verbose.set(true)
     filter {
       exclude("**/generated/**", "**/build/**")
-      include("src//kotlin")
+      include("src/**/kotlin")
     }
   }
 
