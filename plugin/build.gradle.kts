@@ -22,10 +22,10 @@ gradlePlugin {
     create("modulesGraphAssert") {
       id = "cz.mtrakal.module.graph.assertion"
       version = "3.0.0"
-      displayName = "Modules Graph Assert"
-      description = "Gradle plugin to keep your modules graph healthy and lean."
+      displayName = "Modules Graph Assert Mermaid"
+      description = "Gradle plugin to keep your modules graph healthy and lean with Mermaid output."
       implementationClass = "com.jraska.module.graph.assertion.ModuleGraphAssertionsPlugin"
-      tags.addAll("graph", "assert", "build speed", "android", "java", "kotlin", "quality", "multiprojects", "module")
+      tags.addAll("graph", "assert", "build speed", "android", "java", "kotlin", "quality", "multiprojects", "module", "mermaid")
     }
   }
 }
