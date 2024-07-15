@@ -1,18 +1,20 @@
 # Module Graph Assert
 A Gradle plugin that helps keep your module graph healthy and lean.
 
+[![Build](https://github.com/mtrakal/modules-graph-assert/actions/workflows/build.yml/badge.svg)](https://github.com/mtrakal/modules-graph-assert/actions/workflows/build.yml)
+[![Gradle Plugin](https://img.shields.io/badge/Gradle-Plugin-green)](https://plugins.gradle.org/plugin/cz.mtrakal.module.graph.assertion)
 ---
 
 ## What is changed in this fork
 
 > [!IMPORTANT]
-> Added support for Mermaid output format supported by GitHut / GitLab markdown. So we can draw dependency chart into markdown file.
+> Added support for Mermaid output format supported by GitHub / GitLab markdown. So we can draw dependency chart into markdown file.
 
 ### Usage for GitHub / GitLab markdown
 ```kotlin
 // app/build.gradle.kts
 plugins { 
-  id("com.jraska.module.graph.assertion") version "2.5.0"
+  id("cz.mtrakal.module.graph.assertion") version "2.5.0"
 }
 
 
@@ -25,13 +27,11 @@ moduleGraphAssert {
 ```
 
 ---
+## Original info from forked repository by [JRaska](https://github.com/jraska/modules-graph-assert) 
 
 - [Medium Article](https://proandroiddev.com/module-rules-protect-your-build-time-and-architecture-d1194c7cc6bc) with complete context.
 - [Talk about module graph and why it matters](https://www.droidcon.com/2022/11/15/modularization-flatten-your-graph-and-get-the-real-benefits/)
-- [Changelog](https://github.com/jraska/modules-graph-assert/releases)
-
-[![Build](https://github.com/jraska/modules-graph-assert/actions/workflows/build.yml/badge.svg)](https://github.com/jraska/modules-graph-assert/actions/workflows/build.yml)
-[![Gradle Plugin](https://img.shields.io/badge/Gradle-Plugin-green)](https://plugins.gradle.org/plugin/com.jraska.module.graph.assertion)
+- [Changelog](https://github.com/mtrakal/modules-graph-assert/releases)
 
 <img width="1281" alt="example_graph" src="https://user-images.githubusercontent.com/6277721/70832705-18980e00-1df6-11ea-8b78-fc07ba570a2b.png">
 
@@ -55,7 +55,7 @@ moduleGraphAssert {
 Apply the plugin to a module, which dependencies graph you want to assert.
 ```groovy
 plugins {
-  id "com.jraska.module.graph.assertion" version "2.5.0"
+  id "cz.mtrakal.module.graph.assertion" version "2.5.0"
 }
 ```
 
@@ -176,6 +176,6 @@ includeBuild("path/to/modules-graph-assert")
 Root build.gradle:
 ```groovy
 plugins {
-  id('com.jraska.module.graph.assertion')
+  id('cz.mtrakal.module.graph.assertion')
 }
 ```
