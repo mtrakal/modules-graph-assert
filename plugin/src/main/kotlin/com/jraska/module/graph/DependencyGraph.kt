@@ -93,7 +93,7 @@ class DependencyGraph private constructor() {
       val nodeInCurrentPath = path.contains(dependant)
       if (nodeInCurrentPath) {
         val pathText = path.joinToString(separator = ", ") { it.key }
-        throw IllegalStateException("Dependency cycle detected! Cycle in nodes: '${pathText}'.")
+        error("Dependency cycle detected! Cycle in nodes: '$pathText'.")
       }
       addConnections(dependant, into, path, visited)
     }
