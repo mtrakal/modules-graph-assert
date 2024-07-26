@@ -154,15 +154,68 @@ class DependencyGraphTest {
     assert(statistics.modulesCount == 16)
     assert(statistics.edgesCount == 45)
     assert(
-      statistics.longestPath.nodeNames ==
-        listOf(
-          ":feature:settings",
-          ":app",
-          ":feature:settings_entrance",
-          ":lib:dynamic-features",
-          ":core-android",
-          ":core",
-        ),
+      statistics.longestPath.nodeNames == listOf(
+        ":feature:settings",
+        ":app",
+        ":feature:settings_entrance",
+        ":lib:dynamic-features",
+        ":core-android",
+        ":core"
+      )
     )
+  }
+
+  @Test(expected = IllegalStateException::class)
+  fun cyclesDoNotOverflow() {
+    val dependencyTree = DependencyGraph.create(
+      "feature" to "lib",
+      "lib" to "core",
+      "lib" to "feature",
+      "feature" to "core",
+      "app" to "feature"
+    )
+
+    dependencyTree.subTree("app")
+  }
+
+  @Test
+  fun doesNotDetectCycleOnMultiEntry() {
+    val dependencyTree = DependencyGraph.create(
+      "feature" to "lib",
+      "app" to "lib",
+      "app" to "feature"
+    )
+
+    assert(dependencyTree.subTree("app").findRoot().key == "app")
+  }
+
+  @Test(expected = IllegalStateException::class)
+  fun detectsTwoNodesCycle() {
+    val dependencyTree = DependencyGraph.create(
+      "feature" to "app",
+      "app" to "feature"
+    )
+
+    dependencyTree.subTree("app")
+  }
+
+  @Test(expected = IllegalStateException::class)
+  fun detectsThreeNodesCycle() {
+    val dependencyTree = DependencyGraph.create(
+      "feature" to "app",
+      "app" to "lib",
+      "lib" to "feature"
+    )
+
+    dependencyTree.subTree("app")
+  }
+
+  @Test(expected = IllegalStateException::class)
+  fun detectsSingleNodeCycle() {
+    val dependencyTree = DependencyGraph.create(
+      "app" to "app",
+    )
+
+    dependencyTree.subTree("app")
   }
 }

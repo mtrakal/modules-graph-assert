@@ -59,7 +59,7 @@ class DependencyGraph private constructor() {
     require(nodes.contains(key)) { "Dependency Tree doesn't contain module: $key" }
 
     val connections = mutableListOf<Pair<String, String>>()
-    addConnections(nodes.getValue(key), connections)
+    addConnections(nodes.getValue(key), connections, mutableSetOf(), mutableSetOf())
 
     return if (connections.isEmpty()) {
       createSingular(key)
@@ -77,11 +77,28 @@ class DependencyGraph private constructor() {
   private fun addConnections(
     node: Node,
     into: MutableList<Pair<String, String>>,
+    path: MutableSet<Node>,
+    visited: MutableSet<Node>,
   ) {
-    node.dependsOn.forEach {
-      into.add(node.key to it.key)
-      addConnections(it, into)
+    if (visited.contains(node)) {
+      return
+    } else {
+      visited.add(node)
     }
+
+    path.add(node)
+    node.dependsOn.forEach { dependant ->
+      into.add(node.key to dependant.key)
+
+      val nodeInCurrentPath = path.contains(dependant)
+      if (nodeInCurrentPath) {
+        val pathText = path.joinToString(separator = ", ") { it.key }
+        throw IllegalStateException("Dependency cycle detected! Cycle in nodes: '${pathText}'.")
+      }
+      addConnections(dependant, into, path, visited)
+    }
+
+    path.remove(node)
   }
 
   private fun countEdges(): Int = nodes().flatMap { node -> node.dependsOn }.count()

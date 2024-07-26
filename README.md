@@ -55,12 +55,13 @@ moduleGraphAssert {
 Apply the plugin to a module, which dependencies graph you want to assert.
 ```groovy
 plugins {
-  id "cz.mtrakal.module.graph.assertion" version "2.5.0"
+  id "cz.mtrakal.module.graph.assertion" version "3.0.0"
 }
 ```
 
 - You can run `./gradlew assertModuleGraph` to execute configured checks or `./gradlew check` where `assertModuleGraph` will be included.
 - Alternative option is using `assertOnAnyBuild = true` configuration to run the checks on every single Gradle build without need for running explicit tasks - see https://github.com/jraska/modules-graph-assert/pull/184 for more details.
+- Hint: Gradle [Configuration On Demand](https://docs.gradle.org/current/userguide/multi_project_configuration_and_execution.html) may hide some modules from the plugin visibility. If you notice some modules are missing, try the `--no-configure-on-demand` flag.
 
 ### Configuration
 Rules are applied on the Gradle module and its `api` and `implementation` dependencies by default. Typically you would want to apply this in your final app module, however configuration for any module is possible. [Example](https://github.com/jraska/github-client/blob/master/app/build.gradle#L141)
@@ -162,11 +163,9 @@ Please feel free to create PR or issue with any suggestions or ideas. No special
 
 ### Debugging
 
-**Setting up a composite build:**
+**Setting up a composite build**
 
-This case is helpful when you need to debug in a real project.
-Composite builds are consumed directly without publishing a snapshot version.  
-This is done already in `example` project, but you can do the same in any other project:
+[Composite builds](https://docs.gradle.org/current/userguide/composite_builds.html#settings_defined_composite) are consumed directly without publishing a version.  
 
 settings.gradle:
 ```groovy
