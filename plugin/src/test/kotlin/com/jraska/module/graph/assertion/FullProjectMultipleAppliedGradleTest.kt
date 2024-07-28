@@ -1,7 +1,5 @@
 package com.jraska.module.graph.assertion
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -76,13 +74,12 @@ class FullProjectMultipleAppliedGradleTest {
       runGradleAssertModuleGraph(testProjectDir.root, "generateModulesGraphStatistics").output
 
     println(output)
-    MatcherAssert.assertThat(
-      output,
-      CoreMatchers.containsString(
-        "> Task :app:generateModulesGraphStatistics\n" +
-          "GraphStatistics(modulesCount=3, edgesCount=3, height=2, longestPath=':app -> :core -> :core-api')\n" +
-          "\n" +
-          "> Task :no-dependencies:generateModulesGraphStatistics\n" +
+    assert(
+      output.contains(
+        "> Task :app:generateModulesGraphStatistics${System.lineSeparator()}" +
+          "GraphStatistics(modulesCount=3, edgesCount=3, height=2, longestPath=':app -> :core -> :core-api')${System.lineSeparator()}" +
+          "${System.lineSeparator()}" +
+          "> Task :no-dependencies:generateModulesGraphStatistics${System.lineSeparator()}" +
           "GraphStatistics(modulesCount=1, edgesCount=0, height=0, longestPath=':no-dependencies')",
       ),
     )

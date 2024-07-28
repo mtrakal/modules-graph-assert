@@ -1,7 +1,5 @@
 package com.jraska.module.graph.assertion
 
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -129,9 +127,8 @@ class FullProjectGradleTest {
         "-Pmodules.graph.of.module=:feature",
       ).output
 
-    MatcherAssert.assertThat(
-      output,
-      CoreMatchers.containsString(
+    assert(
+      output.contains(
         "digraph G {\n" +
           "\":feature('Implementation')\" -> \":core-api('Api')\" [color=red style=bold]\n" +
           "}",
@@ -148,9 +145,8 @@ class FullProjectGradleTest {
         "-Pmodules.graph.of.module=:feature",
       ).output
 
-    MatcherAssert.assertThat(
-      output,
-      CoreMatchers.containsString(
+    assert(
+      output.contains(
         "GraphStatistics(modulesCount=2, edgesCount=1, height=1, longestPath=':feature -> :core-api')",
       ),
     )
