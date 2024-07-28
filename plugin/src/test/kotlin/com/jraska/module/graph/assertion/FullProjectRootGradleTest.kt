@@ -45,7 +45,7 @@ class FullProjectRootGradleTest {
     assert(
       output.contains(
         (
-          "> Task :generateModulesGraphStatistics\n.*" +
+          "> Task :generateModulesGraphStatistics${System.lineSeparator()}.*" +
             "GraphStatistics\\(modulesCount=2, edgesCount=1, height=1, longestPath=\'root.* -> :core\'\\)"
         ).toRegex(),
       ),
@@ -91,9 +91,9 @@ class FullProjectRootGradleTest {
     assert(
       output.contains(
         (
-          "> Task :generateModulesGraphStatistics\n.*" +
-            "GraphStatistics\\(modulesCount=1, edgesCount=0, height=0, longestPath=\'root.*\'\\)\n\n" +
-            "> Task :app:generateModulesGraphStatistics\n+" +
+          "> Task :generateModulesGraphStatistics${System.lineSeparator()}.*" +
+            "GraphStatistics\\(modulesCount=1, edgesCount=0, height=0, longestPath=\'root.*\'\\)${System.lineSeparator()}${System.lineSeparator()}" +
+            "> Task :app:generateModulesGraphStatistics${System.lineSeparator()}+" +
             "GraphStatistics\\(modulesCount=1, edgesCount=0, height=0, longestPath=\':app\'\\)"
         ).toRegex(),
       ),

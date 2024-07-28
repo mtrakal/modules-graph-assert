@@ -3,6 +3,8 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>LongMethod:DependencyGraphTest.kt$DependencyGraphTest$@Test fun countsStatisticsWell()</ID>
+    <ID>MaxLineLength:FullProjectMultipleAppliedGradleTest.kt$FullProjectMultipleAppliedGradleTest$"GraphStatistics(modulesCount=3, edgesCount=3, height=2, longestPath=':app -&gt; :core -&gt; :core-api')${System.lineSeparator()}"</ID>
+    <ID>MaxLineLength:FullProjectRootGradleTest.kt$FullProjectRootGradleTest$"GraphStatistics\\(modulesCount=1, edgesCount=0, height=0, longestPath=\'root.*\'\\)${System.lineSeparator()}${System.lineSeparator()}"</ID>
     <ID>MaxLineLength:ModuleTreeHeightAssert.kt$ModuleTreeHeightAssert$"Module $moduleName is allowed to have maximum height of $maxHeight, but has $height, problematic dependencies: ${longestPath.pathString()}"</ID>
     <ID>MaxLineLength:ModuleTreeHeightAssert.kt$ModuleTreeHeightAssert$"Module Graph is allowed to have maximum height of $maxHeight, but has $height, problematic dependencies: ${longestPath.pathString()}"</ID>
     <ID>MaxLineLength:OnAnyBuildAssertTest.kt$OnAnyBuildAssertTest$"""["App"(':app') -&gt; "Implementation"(':core'), "App"(':app') -&gt; "Implementation"(':feature')] not allowed by any of ['Implementation -&gt; Api', 'App -&gt; Api']"""</ID>

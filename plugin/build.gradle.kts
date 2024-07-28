@@ -21,7 +21,7 @@ gradlePlugin {
   plugins {
     create("modulesGraphAssert") {
       id = "cz.mtrakal.module.graph.assertion"
-      version = "3.0.0"
+      version = "3.0.1"
       displayName = "Modules Graph Assert Mermaid"
       description = "Gradle plugin to keep your modules graph healthy and lean with Mermaid output."
       implementationClass = "com.jraska.module.graph.assertion.ModuleGraphAssertionsPlugin"
